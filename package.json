@@ -1,0 +1,33 @@
+{
+  "name": "OldmanServer",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha __tests__ --exit"
+  },
+  "author": "Vlad Horecica <vhorecica@pentalog.com>",
+  "dependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "body-parser": "~1.0.1",
+    "cors": "^2.8.4",
+    "express": "~4.0.0",
+    "express-jwt": "^5.3.1",
+    "faker": "^4.1.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "~3.6.13",
+    "rootpath": "^0.1.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "sinon": "^7.1.1",
+    "supertest": "^3.3.0"
+  }
+}
