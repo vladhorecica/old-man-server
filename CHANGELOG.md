@@ -7,3 +7,9 @@ All notable changes to this project will be documented in this file.
 - Tests using Supertest
 - `Users` module with basic CRUD operations and APIs
 - `Makefile` with `install` command in order to set-up the project
+
+## [1.0.1]
+### Added
+- `Swagger` API validation tool
+- `nyc` code coverage
+- `Makefile` command `tests` to run all the code quality tools and tests

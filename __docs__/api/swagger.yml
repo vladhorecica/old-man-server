@@ -1,0 +1,289 @@
+swagger: '2.0'
+
+info:
+    version: 1.0.0
+    title: oldman-server API
+
+schemes:
+- http
+
+produces:
+- application/json
+
+securityDefinitions:
+    bearerAuth:
+      type: apiKey
+      description: JWT Bearer authorization token
+      in: header
+      name: Authorization
+
+security:
+  - bearerAuth: []
+
+responses:
+    BadRequest:
+        description: Error due to invalid data
+    UnauthorizedError:
+        description: Invalid Token
+    InternalServerError:
+        description: Internal server error
+
+paths:
+    /users/authenticate:
+        post:
+            description: Returns logged in user and a token
+            parameters:
+                - name: data
+                  in: body
+                  description: Authentication data
+                  required: true
+                  schema:
+                      type: object
+                      $ref: '#/definitions/AuthenticationData'
+            responses:
+                200:
+                    description: User with JWT token
+                    schema:
+                        type: object
+                        $ref: '#/definitions/AuthenticatedUserData'
+                400:
+                    description: Invalid credentials
+                    schema:
+                        $ref: '#/responses/BadRequest'
+                500:
+                    description: Internal error
+                    schema:
+                        $ref: '#/responses/InternalServerError'
+
+    /users:
+        get:
+            description: Returns a list of users
+            security:
+                - bearerAuth: []
+            responses:
+                200:
+                    description: Users list
+                    schema:
+                        type: object
+                        $ref: '#/definitions/UserListData'
+                400:
+                    description: Invalid data provided
+                    schema:
+                        $ref: '#/responses/BadRequest'
+                401:
+                    description: Unauthorized or Invalid Token
+                    schema:
+                        $ref: '#/responses/UnauthorizedError'
+                500:
+                    description: Internal error
+                    schema:
+                        $ref: '#/responses/InternalServerError'
+        post:
+            description: Create a new user
+            security:
+                - bearerAuth: []
+            parameters:
+                - name: data
+                  in: body
+                  description: User data needed for creation
+                  required: true
+                  schema:
+                      type: object
+                      $ref: '#/definitions/UserCreateData'
+            responses:
+                200:
+                    description: User successfully created
+                    schema:
+                        $ref: '#/definitions/UserResponseData'
+                400:
+                    description: Invalid data provided
+                    schema:
+                        $ref: '#/responses/BadRequest'
+                401:
+                    description: Unauthorized or Invalid Token
+                    schema:
+                        $ref: '#/responses/UnauthorizedError'
+                500:
+                    description: Internal error
+                    schema:
+                        $ref: '#/responses/InternalServerError'
+
+    /users/{num}:
+        get:
+            description: Returns a single user
+            security:
+                - bearerAuth: []
+            parameters:
+                - name: num
+                  in: path
+                  type: integer
+                  description: User ID
+                  required: true
+            responses:
+                200:
+                    description: User data
+                400:
+                    description: Invalid data provided
+                    schema:
+                        $ref: '#/responses/BadRequest'
+                401:
+                    description: Unauthorized or Invalid Token
+                    schema:
+                        $ref: '#/responses/UnauthorizedError'
+                500:
+                    description: Internal error
+                    schema:
+                        $ref: '#/responses/InternalServerError'
+        put:
+            description: Updates an existing user
+            security:
+                - bearerAuth: []
+            parameters:
+                - name: num
+                  in: path
+                  type: integer
+                  description: User ID
+                  required: true
+                - name: data
+                  in: body
+                  description: User data needed for update
+                  required: true
+                  schema:
+                      type: object
+                      $ref: '#/definitions/UserUpdateData'
+            responses:
+                200:
+                    description: User successfully updated
+                    schema:
+                        $ref: '#/definitions/UserResponseData'
+                400:
+                    description: Invalid data provided
+                    schema:
+                        $ref: '#/responses/BadRequest'
+                401:
+                    description: Unauthorized or Invalid Token
+                    schema:
+                        $ref: '#/responses/UnauthorizedError'
+                500:
+                    description: Internal error
+                    schema:
+                        $ref: '#/responses/InternalServerError'
+        delete:
+            description: Deletes an existing user
+            security:
+                - bearerAuth: []
+            parameters:
+                - name: num
+                  in: path
+                  type: integer
+                  description: User ID
+                  required: true
+            responses:
+                200:
+                    description: User successfully updated
+                400:
+                    description: Invalid data provided
+                    schema:
+                        $ref: '#/responses/BadRequest'
+                401:
+                    description: Unauthorized or Invalid Token
+                    schema:
+                        $ref: '#/responses/UnauthorizedError'
+                500:
+                    description: Internal error
+                    schema:
+                        $ref: '#/responses/InternalServerError'
+
+definitions:
+    AuthenticationData:
+        type: object
+        properties:
+            username:
+                type: string
+                description: User username
+            password:
+                type: string
+                description: User password
+    AuthenticatedUserData:
+        type: object
+        properties:
+            username:
+              type: string
+              description: User username
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+            password:
+              type: string
+              description: User password
+            token:
+              type: string
+              description: JWT token
+    UserData:
+        type: object
+        properties:
+            id:
+              type: integer
+              description: User ID
+            username:
+              type: string
+              description: User username
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+    UserCreateData:
+        type: object
+        properties:
+            username:
+              type: string
+              description: User username
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+            password:
+              type: string
+              description: User password
+    UserUpdateData:
+        type: object
+        properties:
+            username:
+              type: string
+              description: User username
+            firstName:
+              type: string
+              description: User first name
+            lastName:
+              type: string
+              description: User last name
+    UserListData:
+        type: object
+        properties:
+            meta:
+              type: object
+              description: Query metadata
+              properties:
+                  TOTAL:
+                    type: integer
+                    description: Total number of users
+                  OFFSET:
+                    type: integer
+                    description: Query offset to limit the result
+            data:
+              type: array
+              items:
+                $ref: '#/definitions/UserData'
+    UserResponseData:
+        type: object
+        properties:
+            data:
+              type: object
+              $ref: '#/definitions/UserData'

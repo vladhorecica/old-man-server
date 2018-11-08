@@ -6,3 +6,11 @@ help: ## Show Help
 install: ## Install Project
 	npm install
 	cp -i config.js.dist config.js
+
+.PHONY: tests
+tests: ## Run all tests and code quality tools
+	@echo "\n\n\n▁ ▂ ▄ ▅ ▆ ▇ █  RUNNING SUPER TESTS  █ ▇ ▆ ▅ ▄ ▂ ▁\n\n\n"
+	npm run test:coverage
+	@echo "\n\n\n▁ ▂ ▄ ▅ ▆ ▇ █  RUNNING SWAGGER VALIDATION  █ ▇ ▆ ▅ ▄ ▂ ▁\n\n\n"
+	npm run test:apidocs
+	@echo "\n\n▀▄▀▄▀▄▀▄▀▄▀▄▀▄   TEST SUITES COMPLETED   ▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀\n\n"
