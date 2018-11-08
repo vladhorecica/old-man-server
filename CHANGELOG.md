@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - `Users` module with basic CRUD operations and APIs
 - `Makefile` with `install` command in order to set-up the project
 
-## [1.0.1]
+## [1.1.0]
 ### Added
 - `Swagger` API validation tool
 - `nyc` code coverage
