@@ -13,3 +13,6 @@ All notable changes to this project will be documented in this file.
 - `Swagger` API validation tool
 - `nyc` code coverage
 - `Makefile` command `tests` to run all the code quality tools and tests
+
+### Changed
+- `Users` APIs now require authorization (JWT Token)
