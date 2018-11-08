@@ -24,7 +24,6 @@ describe('USERS Controller', function() {
   });
 
   describe('GET /users', function() {
-      /** TODO Currently removed the authorization for this endpoint
     it('Fails due to unauthorized error', function(done) {
       request(app)
         .get('/users')
@@ -40,7 +39,7 @@ describe('USERS Controller', function() {
           done();
         })
     });
-    **/
+
     it('Successfully returns a list of users', function(done) {
       request(app)
         .get('/users')
@@ -73,7 +72,6 @@ describe('USERS Controller', function() {
   });
 
   describe('POST /users', function() {
-/** TODO Currently removed the authorization for this endpoint
       it('Fails due to unauthorized error', function(done) {
       request(app)
         .post('/users')
@@ -89,7 +87,6 @@ describe('USERS Controller', function() {
           done();
         })
     });
- **/
 
     it('Successfully creates a user', function(done) {
       request(app)
@@ -110,7 +107,6 @@ describe('USERS Controller', function() {
   });
 
   describe('PUT /users', function() {
-/** TODO Currently removed the authorization for this endpoint
       it('Fails due to unauthorized error', function(done) {
       request(app)
         .put('/users')
@@ -126,7 +122,6 @@ describe('USERS Controller', function() {
           done();
         })
     });
- **/
 
     it('Successfully updates a user', function(done) {
       request(app)
