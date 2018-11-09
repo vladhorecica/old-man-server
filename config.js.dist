@@ -1,4 +1,8 @@
 module.exports = {
     port: 8080,
-    url: "http://localhost"
+    url: "http://localhost",
+    fullUrl: "localhost:8080",
+    jwt: {
+        secret: "ThisIsNotSoSecretJWT"
+    }
 };
