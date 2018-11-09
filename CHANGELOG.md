@@ -16,3 +16,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - `Users` APIs now require authorization (JWT Token)
+
+## [1.1.1]
+### Changed
+- `Users` POST API no longer needs authorization

@@ -9,6 +9,7 @@ function jwt() {
         path: [
             '/',
             '/users/authenticate',
+            { url: '/users/', methods: ['POST']}
         ]
     });
 }
